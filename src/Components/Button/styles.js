@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     title: {
         color: '#FFFFFF',
         textAlign: "center",
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: "bold",
     }
 })
