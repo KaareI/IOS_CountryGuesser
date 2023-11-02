@@ -6,7 +6,7 @@ import {styles} from "./styles";
 const Home = ()  => {
     return (
         <View style={styles.container}>
-        <Image resizeMode="contain" style={styles.image} source={require('../../assets/brazil-silhouette.png')}/>
+        <Image resizeMode="contain" style={styles.image} source={require('../../assets/brazil.png')}/>
 
         <View style={styles.titleContainer}>
         <Text style={styles.title}>Take a guess:</Text>

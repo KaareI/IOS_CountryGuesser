@@ -10,13 +10,13 @@ export const styles = StyleSheet.create({
     },
     image: {
         width: '100%',
-        height: 200
+        height: 325
     },
     titleContainer:{
-        marginVertical: 54
+        marginVertical: 35
     },
     title: {
-        fontSize: 40,
+        fontSize: 35,
         fontWeight: "bold",
         textAlign: "center"
     },
