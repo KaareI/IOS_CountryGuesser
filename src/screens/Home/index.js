@@ -5,28 +5,55 @@ import { styles } from "./styles";
 
 // Import all the image assets for the listed countries
 const afghanistanImage = require("../../assets/afghanistan.png");
+const algeriaImage = require("../../assets/algeria.png");
+const andorraImage = require("../../assets/andorra.png");
+const argentinaImage = require("../../assets/argentina.png");
 const australiaImage = require("../../assets/australia.png");
+const austriaImage = require("../../assets/austria.png");
+const bangladeshImage = require("../../assets/bangladesh.png");
 const brazilImage = require("../../assets/brazil.png");
+const cambodiaImage = require("../../assets/cambodia.png");
+const chileImage = require("../../assets/chile.png");
 const chinaImage = require("../../assets/china.png");
 const franceImage = require("../../assets/france.png");
 const germanyImage = require("../../assets/germany.png");
+const icelandImage = require("../../assets/iceland.png");
+const indiaImage = require("../../assets/india.png");
+const japanImage = require("../../assets/japan.png");
+const madagascarImage = require("../../assets/madagascar.png");
 const maltaImage = require("../../assets/malta.png");
+const norwayImage = require("../../assets/norway.png");
 const polandImage = require("../../assets/poland.png");
 const swedenImage = require("../../assets/sweden.png");
 const ukraineImage = require("../../assets/ukraine.png");
+const vietnamImage = require("../../assets/vietnam.png");
 
 const countries = [
     { name: "Afghanistan", image: afghanistanImage },
+    { name: "Algeria", image: algeriaImage },
+    { name: "Andorra", image: andorraImage },
+    { name: "Argentina", image: argentinaImage },
     { name: "Australia", image: australiaImage },
+    { name: "Austria", image: austriaImage },
+    { name: "Bangladesh", image: bangladeshImage },
     { name: "Brazil", image: brazilImage },
+    { name: "Cambodia", image: cambodiaImage },
+    { name: "Chile", image: chileImage },
     { name: "China", image: chinaImage },
     { name: "France", image: franceImage },
     { name: "Germany", image: germanyImage },
+    { name: "Iceland", image: icelandImage },
+    { name: "India", image: indiaImage },
+    { name: "Japan", image: japanImage },
+    { name: "Madagascar", image: madagascarImage },
     { name: "Malta", image: maltaImage },
+    { name: "Norway", image: norwayImage },
     { name: "Poland", image: polandImage },
     { name: "Sweden", image: swedenImage },
     { name: "Ukraine", image: ukraineImage },
+    { name: "Vietnam", image: vietnamImage },
 ];
+
 
 const Home = () => {
     const [currentCountry, setCurrentCountry] = useState(getRandomCountry());
