@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, View, Image } from "react-native";
 import Button from "../../Components/Button";
 import { styles } from "./styles";
@@ -28,36 +28,73 @@ const countries = [
     { name: "Ukraine", image: ukraineImage },
 ];
 
-
 const Home = () => {
     const [currentCountry, setCurrentCountry] = useState(getRandomCountry());
     const [score, setScore] = useState(0);
+    const [incorrectClick, setIncorrectClick] = useState(false);
+    const [options, setOptions] = useState([]);
+
+    // Function to reset the incorrect click state after 1.5 seconds
+    useEffect(() => {
+        if (incorrectClick) {
+            const timeout = setTimeout(() => {
+                setIncorrectClick(false);
+            }, 1500);
+
+            return () => clearTimeout(timeout);
+        }
+    }, [incorrectClick]);
 
     function getRandomCountry() {
         const randomIndex = Math.floor(Math.random() * countries.length);
         return countries[randomIndex];
     }
 
+    function getRandomOptions(correctCountry) {
+        const allCountries = [...countries];
+        const correctCountryIndex = allCountries.findIndex(country => country.name === correctCountry.name);
+        allCountries.splice(correctCountryIndex, 1); // Remove the correct answer temporarily
+
+        // Shuffle the remaining options
+        for (let i = allCountries.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [allCountries[i], allCountries[j]] = [allCountries[j], allCountries[i]];
+        }
+
+        // Add the correct answer back to the options
+        const shuffledOptions = [correctCountry, ...allCountries.slice(0, 2)];
+
+        // Shuffle the options again to randomize their order
+        for (let i = shuffledOptions.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffledOptions[i], shuffledOptions[j]] = [shuffledOptions[j], shuffledOptions[i]];
+        }
+
+        return shuffledOptions;
+    }
+
+    const initializeGame = () => {
+        const initialOptions = getRandomOptions(currentCountry);
+        setOptions(initialOptions);
+    };
+
+    useEffect(() => {
+        initializeGame();
+    }, [currentCountry]);
+
     const handleButtonClick = (countryName) => {
         if (countryName === currentCountry.name) {
             setScore(score + 1);
             console.log("Chosen Country: " + currentCountry.name);
             console.log("Image Source: " + currentCountry.image);
+
+            // User guessed correctly, continue to the next round
+            setCurrentCountry(getRandomCountry());
         } else {
             // Incorrect guess, handle the logic for changing button color here.
+            setIncorrectClick(true);
         }
-
-        // Change to a random country
-        setCurrentCountry(getRandomCountry());
     };
-
-    // Create an array of random variant countries (excluding the correct one)
-    const variantCountries = countries
-        .filter(country => country.name !== currentCountry.name)
-        .sort(() => Math.random() - 0.5)
-        .slice(0, 2);
-
-    const allOptions = [currentCountry, ...variantCountries].sort(() => Math.random() - 0.5);
 
     return (
         <View style={styles.container}>
@@ -71,12 +108,13 @@ const Home = () => {
                 <Text style={styles.title}>Take a guess:</Text>
             </View>
 
-            {allOptions.map((country, index) => (
+            {options.map((country, index) => (
                 <Button
                     key={index}
                     title={country.name}
                     onPress={() => handleButtonClick(country.name)}
                     correct={country.name === currentCountry.name}
+                    style={{ backgroundColor: incorrectClick && country.name !== currentCountry.name ? "red" : "transparent" }}
                 />
             ))}
 
