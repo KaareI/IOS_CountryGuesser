@@ -15,7 +15,7 @@ const Home = ()  => {
         <Button title="Brazil" />
         <Button title="Russia" />
         <Button title="Australia" />
-
+        <Text style={styles.footer}>0</Text>
         </View>
     )
 }

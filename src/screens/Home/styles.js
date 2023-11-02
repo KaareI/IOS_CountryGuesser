@@ -20,15 +20,10 @@ export const styles = StyleSheet.create({
         fontWeight: "bold",
         textAlign: "center"
     },
-    innerTitle: {
-        color: '#FCA34D',
-        textDecorationLine: 'underline'
-    },
-    footerText: {
-        color: '#4F63AC',
-        textAlign: "center",
-        fontSize: 16,
+    footer: {
+        fontSize: 30,
         fontWeight: "bold",
-        marginTop: 30
     }
+
+
 })
