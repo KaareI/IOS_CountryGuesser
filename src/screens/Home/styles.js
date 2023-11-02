@@ -10,18 +10,18 @@ export const styles = StyleSheet.create({
     },
     image: {
         width: '100%',
-        height: 325
+        height: 315
     },
     titleContainer:{
         marginVertical: 35
     },
     title: {
-        fontSize: 35,
+        fontSize: 25,
         fontWeight: "bold",
         textAlign: "center"
     },
     footer: {
-        fontSize: 30,
+        fontSize: 25,
         fontWeight: "bold",
     }
 
