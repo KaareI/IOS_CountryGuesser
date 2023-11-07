@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Text, View, Image } from "react-native";
 import Button from "../../Components/Button";
 import { styles } from "./styles";
+import * as Animatable from "react-native-animatable"; // Import Animatable
 
 // Import all the image assets for the listed countries
 const afghanistanImage = require("../../assets/afghanistan.png");
@@ -215,106 +216,132 @@ const countries = [
 
 
 const Home = () => {
-    const [currentCountry, setCurrentCountry] = useState(getRandomCountry());
-    const [score, setScore] = useState(0);
-    const [incorrectClick, setIncorrectClick] = useState(false);
-    const [options, setOptions] = useState([]);
-    const [incorrectGuessIndex, setIncorrectGuessIndex] = useState(null);
+  const [currentCountry, setCurrentCountry] = useState(getRandomCountry());
+  const [score, setScore] = useState(0);
+  const [incorrectClick, setIncorrectClick] = useState(false);
+  const [options, setOptions] = useState([]);
+  const [incorrectGuessIndex, setIncorrectGuessIndex] = useState(null);
+  const [flashScore, setFlashScore] = useState(false);
 
-    // Function to reset the incorrect click state after 1.5 seconds
-    useEffect(() => {
-        if (incorrectClick) {
-            const timeout = setTimeout(() => {
-                setIncorrectClick(false);
-            }, 1500);
+  // Function to reset the incorrect click state after 1.5 seconds
+  useEffect(() => {
+    if (incorrectClick) {
+      const timeout = setTimeout(() => {
+        setIncorrectClick(false);
+      }, 1500);
 
-            return () => clearTimeout(timeout);
-        }
-    }, [incorrectClick]);
-
-    function getRandomCountry() {
-        const randomIndex = Math.floor(Math.random() * countries.length);
-        return countries[randomIndex];
+      return () => clearTimeout(timeout);
     }
+  }, [incorrectClick]);
 
-    function getRandomOptions(correctCountry) {
-        const allCountries = [...countries];
-        const correctCountryIndex = allCountries.findIndex(country => country.name === correctCountry.name);
-        allCountries.splice(correctCountryIndex, 1); // Remove the correct answer temporarily
-
-        // Shuffle the remaining options
-        for (let i = allCountries.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [allCountries[i], allCountries[j]] = [allCountries[j], allCountries[i]];
-        }
-
-        // Add the correct answer back to the options
-        const shuffledOptions = [correctCountry, ...allCountries.slice(0, 2)];
-
-        // Shuffle the options again to randomize their order
-        for (let i = shuffledOptions.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffledOptions[i], shuffledOptions[j]] = [shuffledOptions[j], shuffledOptions[i]];
-        }
-
-        return shuffledOptions;
+  // Function to flash the score in green
+  useEffect(() => {
+    if (flashScore) {
+      // Flash the score using react-native-animatable
+      textRef.rubberBand(800).then(() => {
+        setFlashScore(false); // Reset flashScore state
+      });
     }
+  }, [flashScore]);
 
-    const initializeGame = () => {
-        const initialOptions = getRandomOptions(currentCountry);
-        setOptions(initialOptions);
-    };
+  function getRandomCountry() {
+    const randomIndex = Math.floor(Math.random() * countries.length);
+    return countries[randomIndex];
+  }
 
-    useEffect(() => {
-        initializeGame();
-    }, [currentCountry]);
-
-    const handleButtonClick = (countryName, index) => {
-        if (countryName === currentCountry.name) {
-            setScore(score + 1);
-            console.log("Chosen Country: " + currentCountry.name);
-            console.log("Image Source: " + currentCountry.image);
-    
-            // User guessed correctly, continue to the next round
-            setCurrentCountry(getRandomCountry());
-        } else {
-            // Incorrect guess, handle the logic for changing button color here.
-            setIncorrectGuessIndex(index);
-    
-            // Reset the incorrect guess state after 1.5 seconds
-            setTimeout(() => {
-                setIncorrectGuessIndex(null);
-            }, 1200);
-        }
-    };
-    
-
-    return (
-        <View style={styles.container}>
-            <Image
-                resizeMode="contain"
-                style={styles.image}
-                source={currentCountry.image}
-            />
-
-            <View style={styles.titleContainer}>
-                <Text style={styles.title}>Take a guess:</Text>
-            </View>
-
-            {options.map((country, index) => (
-    <Button
-        key={index}
-        title={country.name}
-        onPress={() => handleButtonClick(country.name, index)}
-        correct={country.name === currentCountry.name}
-        incorrect={index === incorrectGuessIndex}
-    />
-))}
-
-
-            <Text style={styles.footer}>{score}</Text>
-        </View>
+  function getRandomOptions(correctCountry) {
+    const allCountries = [...countries];
+    const correctCountryIndex = allCountries.findIndex(
+      country => country.name === correctCountry.name,
     );
+    allCountries.splice(correctCountryIndex, 1); // Remove the correct answer temporarily
+
+    // Shuffle the remaining options
+    for (let i = allCountries.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [allCountries[i], allCountries[j]] = [allCountries[j], allCountries[i]];
+    }
+
+    // Add the correct answer back to the options
+    const shuffledOptions = [correctCountry, ...allCountries.slice(0, 2)];
+
+    // Shuffle the options again to randomize their order
+    for (let i = shuffledOptions.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledOptions[i], shuffledOptions[j]] = [
+        shuffledOptions[j],
+        shuffledOptions[i],
+      ];
+    }
+
+    return shuffledOptions;
+  }
+
+  const initializeGame = () => {
+    const initialOptions = getRandomOptions(currentCountry);
+    setOptions(initialOptions);
+  };
+
+  useEffect(() => {
+    initializeGame();
+  }, [currentCountry]);
+
+  const handleButtonClick = (countryName, index) => {
+    if (countryName === currentCountry.name) {
+      setScore(score + 1);
+      setFlashScore(true);
+      console.log('Chosen Country: ' + currentCountry.name);
+      console.log('Image Source: ' + currentCountry.image);
+
+      // User guessed correctly, continue to the next round
+      setCurrentCountry(getRandomCountry());
+    } else {
+      // Incorrect guess, handle the logic for changing button color here.
+      setIncorrectGuessIndex(index);
+
+      // Reset the incorrect guess state after 1.5 seconds
+      setTimeout(() => {
+        setIncorrectGuessIndex(null);
+      }, 1200);
+    }
+  };
+
+  return (
+    <View style={styles.container}>
+      <Image
+        resizeMode="contain"
+        style={styles.image}
+        source={currentCountry.image}
+      />
+
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>Take a guess:</Text>
+      </View>
+
+      {options.map((country, index) => (
+        <Button
+          key={index}
+          title={country.name}
+          onPress={() => handleButtonClick(country.name, index)}
+          correct={country.name === currentCountry.name}
+          incorrect={index === incorrectGuessIndex}
+        />
+      ))}
+
+      {/* Use Animatable.Text to apply font size animation */}
+      <Animatable.Text
+        ref={(ref) => (textRef = ref)}
+        animation={flashScore ? "rubberBand" : null}
+        style={[
+          styles.footer,
+          flashScore && { color: 'limegreen', lineHeight: 30 }, // Increased font size
+        ]}
+      >
+        {score}
+      </Animatable.Text>
+    </View>
+  );
 };
+
 
 export default Home;
