@@ -219,6 +219,7 @@ const Home = () => {
     const [score, setScore] = useState(0);
     const [incorrectClick, setIncorrectClick] = useState(false);
     const [options, setOptions] = useState([]);
+    const [incorrectGuessIndex, setIncorrectGuessIndex] = useState(null);
 
     // Function to reset the incorrect click state after 1.5 seconds
     useEffect(() => {
@@ -268,19 +269,25 @@ const Home = () => {
         initializeGame();
     }, [currentCountry]);
 
-    const handleButtonClick = (countryName) => {
+    const handleButtonClick = (countryName, index) => {
         if (countryName === currentCountry.name) {
             setScore(score + 1);
             console.log("Chosen Country: " + currentCountry.name);
             console.log("Image Source: " + currentCountry.image);
-
+    
             // User guessed correctly, continue to the next round
             setCurrentCountry(getRandomCountry());
         } else {
             // Incorrect guess, handle the logic for changing button color here.
-            setIncorrectClick(true);
+            setIncorrectGuessIndex(index);
+    
+            // Reset the incorrect guess state after 1.5 seconds
+            setTimeout(() => {
+                setIncorrectGuessIndex(null);
+            }, 1200);
         }
     };
+    
 
     return (
         <View style={styles.container}>
@@ -295,14 +302,15 @@ const Home = () => {
             </View>
 
             {options.map((country, index) => (
-                <Button
-                    key={index}
-                    title={country.name}
-                    onPress={() => handleButtonClick(country.name)}
-                    correct={country.name === currentCountry.name}
-                    style={{ backgroundColor: incorrectClick && country.name !== currentCountry.name ? "red" : "transparent" }}
-                />
-            ))}
+    <Button
+        key={index}
+        title={country.name}
+        onPress={() => handleButtonClick(country.name, index)}
+        correct={country.name === currentCountry.name}
+        incorrect={index === incorrectGuessIndex}
+    />
+))}
+
 
             <Text style={styles.footer}>{score}</Text>
         </View>

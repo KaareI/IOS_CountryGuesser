@@ -13,5 +13,9 @@ export const styles = StyleSheet.create({
         textAlign: "center",
         fontSize: 18,
         fontWeight: "bold",
-    }
+    },
+    incorrectButton: {
+        backgroundColor: "red", // You can use your preferred color
+    },
+    
 })
