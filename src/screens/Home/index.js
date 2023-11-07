@@ -27,6 +27,85 @@ const polandImage = require("../../assets/poland.png");
 const swedenImage = require("../../assets/sweden.png");
 const ukraineImage = require("../../assets/ukraine.png");
 const vietnamImage = require("../../assets/vietnam.png");
+const bahrainImage = require("../../assets/bahrain.png");
+const belgiumImage = require("../../assets/belgium.png");
+const belizeImage = require("../../assets/belize.png");
+const boliviaImage = require("../../assets/bolivia.png");
+const botswanaImage = require("../../assets/botswana.png");
+const bulgariaImage = require("../../assets/bulgaria.png");
+const canadaImage = require("../../assets/canada.png");
+const colombiaImage = require("../../assets/colombia.png");
+const costaRicaImage = require("../../assets/costa-rica.png");
+const croatiaImage = require("../../assets/croatia.png");
+const cubaImage = require("../../assets/cuba.png");
+const cyprusImage = require("../../assets/cyprus.png");
+const denmarkImage = require("../../assets/denmark.png");
+const ecuadorImage = require("../../assets/ecuador.png");
+const egyptImage = require("../../assets/egypt.png");
+const elSalvadorImage = require("../../assets/el-salvador.png");
+const fijiImage = require("../../assets/fiji.png");
+const greeceImage = require("../../assets/greece.png");
+const greenlandImage = require("../../assets/greenland.png");
+const guatemalaImage = require("../../assets/guatemala.png");
+const guyanaImage = require("../../assets/guyana.png");
+const haitiImage = require("../../assets/haiti.png");
+const hondurasImage = require("../../assets/honduras.png");
+const hungaryImage = require("../../assets/hungary.png");
+const indonesiaImage = require("../../assets/indonesia.png");
+const iranImage = require("../../assets/iran.png");
+const iraqImage = require("../../assets/iraq.png");
+const irelandImage = require("../../assets/ireland.png");
+const israelImage = require("../../assets/israel.png");
+const italyImage = require("../../assets/italy.png");
+const jamaicaImage = require("../../assets/jamaica.png");
+const jordanImage = require("../../assets/jordan.png");
+const kenyaImage = require("../../assets/kenya.png");
+const kosovoImage = require("../../assets/kosovo.png");
+const kuwaitImage = require("../../assets/kuwait.png");
+const laosImage = require("../../assets/laos.png");
+const libyaImage = require("../../assets/libya.png");
+const luxembourgImage = require("../../assets/luxembourg.png");
+const macedoniaImage = require("../../assets/macedonia.png");
+const malaysiaImage = require("../../assets/malaysia.png");
+const maliImage = require("../../assets/mali.png");
+const mauritiusImage = require("../../assets/mauritius.png");
+const mexicoImage = require("../../assets/mexico.png");
+const mongoliaImage = require("../../assets/mongolia.png");
+const mozambiqueImage = require("../../assets/mozambique.png");
+const myanmarImage = require("../../assets/myanmar.png");
+const nepalImage = require("../../assets/nepal.png");
+const netherlandsImage = require("../../assets/netherlands.png");
+const newZealandImage = require("../../assets/new-zealand.png");
+const nicaraguaImage = require("../../assets/nicaragua.png");
+const northKoreaImage = require("../../assets/north-korea.png");
+const omanImage = require("../../assets/oman.png");
+const pakistanImage = require("../../assets/pakistan.png");
+const panamaImage = require("../../assets/panama.png");
+const paraguayImage = require("../../assets/paraguay.png");
+const peruImage = require("../../assets/peru.png");
+const philippinesImage = require("../../assets/philippines.png");
+const portugalImage = require("../../assets/portugal.png");
+const qatarImage = require("../../assets/qatar.png");
+const romaniaImage = require("../../assets/romania.png");
+const rwandaImage = require("../../assets/rwanda.png");
+const saudiArabiaImage = require("../../assets/saudi-arabia.png");
+const sierraLeoneImage = require("../../assets/sierra-leone.png");
+const singaporeImage = require("../../assets/singapore.png");
+const sloveniaImage = require("../../assets/slovenia.png");
+const somaliaImage = require("../../assets/somalia.png");
+const southAfricaImage = require("../../assets/south-africa.png");
+const southKoreaImage = require("../../assets/south-korea.png");
+const spainImage = require("../../assets/spain.png");
+const sriLankaImage = require("../../assets/sri-lanka.png");
+const sudanImage = require("../../assets/sudan.png");
+const switzerlandImage = require("../../assets/switzerland.png");
+const taiwanImage = require("../../assets/taiwan.png");
+const tasmaniaImage = require("../../assets/tasmania.png");
+const thailandImage = require("../../assets/thailand.png");
+const ugandaImage = require("../../assets/uganda.png");
+const venezuelaImage = require("../../assets/venezuela.png");
+const zambiaImage = require("../../assets/zambia.png");
+const zimbabweImage = require("../../assets/zimbabwe.png");
 
 const countries = [
     { name: "Afghanistan", image: afghanistanImage },
@@ -52,7 +131,87 @@ const countries = [
     { name: "Sweden", image: swedenImage },
     { name: "Ukraine", image: ukraineImage },
     { name: "Vietnam", image: vietnamImage },
+    { name: "Bahrain", image: bahrainImage },
+    { name: "Belgium", image: belgiumImage },
+    { name: "Belize", image: belizeImage },
+    { name: "Bolivia", image: boliviaImage },
+    { name: "Botswana", image: botswanaImage },
+    { name: "Bulgaria", image: bulgariaImage },
+    { name: "Canada", image: canadaImage },
+    { name: "Colombia", image: colombiaImage },
+    { name: "Costa Rica", image: costaRicaImage },
+    { name: "Croatia", image: croatiaImage },
+    { name: "Cuba", image: cubaImage },
+    { name: "Cyprus", image: cyprusImage },
+    { name: "Denmark", image: denmarkImage },
+    { name: "Ecuador", image: ecuadorImage },
+    { name: "Egypt", image: egyptImage },
+    { name: "El Salvador", image: elSalvadorImage },
+    { name: "Fiji", image: fijiImage },
+    { name: "Greece", image: greeceImage },
+    { name: "Greenland", image: greenlandImage },
+    { name: "Guatemala", image: guatemalaImage },
+    { name: "Guyana", image: guyanaImage },
+    { name: "Haiti", image: haitiImage },
+    { name: "Honduras", image: hondurasImage },
+    { name: "Hungary", image: hungaryImage },
+    { name: "Indonesia", image: indonesiaImage },
+    { name: "Iran", image: iranImage },
+    { name: "Iraq", image: iraqImage },
+    { name: "Ireland", image: irelandImage },
+    { name: "Israel", image: israelImage },
+    { name: "Italy", image: italyImage },
+    { name: "Jamaica", image: jamaicaImage },
+    { name: "Jordan", image: jordanImage },
+    { name: "Kenya", image: kenyaImage },
+    { name: "Kosovo", image: kosovoImage },
+    { name: "Kuwait", image: kuwaitImage },
+    { name: "Laos", image: laosImage },
+    { name: "Libya", image: libyaImage },
+    { name: "Luxembourg", image: luxembourgImage },
+    { name: "Macedonia", image: macedoniaImage },
+    { name: "Malaysia", image: malaysiaImage },
+    { name: "Mali", image: maliImage },
+    { name: "Mauritius", image: mauritiusImage },
+    { name: "Mexico", image: mexicoImage },
+    { name: "Mongolia", image: mongoliaImage },
+    { name: "Mozambique", image: mozambiqueImage },
+    { name: "Myanmar", image: myanmarImage },
+    { name: "Nepal", image: nepalImage },
+    { name: "Netherlands", image: netherlandsImage },
+    { name: "New Zealand", image: newZealandImage },
+    { name: "Nicaragua", image: nicaraguaImage },
+    { name: "North Korea", image: northKoreaImage },
+    { name: "Oman", image: omanImage },
+    { name: "Pakistan", image: pakistanImage },
+    { name: "Panama", image: panamaImage },
+    { name: "Paraguay", image: paraguayImage },
+    { name: "Peru", image: peruImage },
+    { name: "Philippines", image: philippinesImage },
+    { name: "Portugal", image: portugalImage },
+    { name: "Qatar", image: qatarImage },
+    { name: "Romania", image: romaniaImage },
+    { name: "Rwanda", image: rwandaImage },
+    { name: "Saudi Arabia", image: saudiArabiaImage },
+    { name: "Sierra Leone", image: sierraLeoneImage },
+    { name: "Singapore", image: singaporeImage },
+    { name: "Slovenia", image: sloveniaImage },
+    { name: "Somalia", image: somaliaImage },
+    { name: "South Africa", image: southAfricaImage },
+    { name: "South Korea", image: southKoreaImage },
+    { name: "Spain", image: spainImage },
+    { name: "Sri Lanka", image: sriLankaImage },
+    { name: "Sudan", image: sudanImage },
+    { name: "Switzerland", image: switzerlandImage },
+    { name: "Taiwan", image: taiwanImage },
+    { name: "Tasmania", image: tasmaniaImage },
+    { name: "Thailand", image: thailandImage },
+    { name: "Uganda", image: ugandaImage },
+    { name: "Venezuela", image: venezuelaImage },
+    { name: "Zambia", image: zambiaImage },
+    { name: "Zimbabwe", image: zimbabweImage },
 ];
+
 
 
 const Home = () => {
