@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Text, View, Image } from "react-native";
 import Button from "../../Components/Button";
 import { styles } from "./styles";
+import * as Animatable from "react-native-animatable"; // Import Animatable
 
 // Import all the image assets for the listed countries
 const afghanistanImage = require("../../assets/afghanistan.png");
@@ -236,11 +237,10 @@ const Home = () => {
   // Function to flash the score in green
   useEffect(() => {
     if (flashScore) {
-      const interval = setInterval(() => {
-        setFlashScore(false);
-      }, 1500); // Lasts for 1.5 seconds
-
-      return () => clearInterval(interval);
+      // Flash the score using react-native-animatable
+      textRef.rubberBand(800).then(() => {
+        setFlashScore(false); // Reset flashScore state
+      });
     }
   }, [flashScore]);
 
@@ -328,9 +328,20 @@ const Home = () => {
         />
       ))}
 
-<Text style={[styles.footer, flashScore && { color: 'limegreen', fontSize: 31, lineHeight: 30 }]}>{score}</Text>
+      {/* Use Animatable.Text to apply font size animation */}
+      <Animatable.Text
+        ref={(ref) => (textRef = ref)}
+        animation={flashScore ? "rubberBand" : null}
+        style={[
+          styles.footer,
+          flashScore && { color: 'limegreen', lineHeight: 30 }, // Increased font size
+        ]}
+      >
+        {score}
+      </Animatable.Text>
     </View>
   );
 };
+
 
 export default Home;
