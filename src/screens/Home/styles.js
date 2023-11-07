@@ -23,7 +23,8 @@ export const styles = StyleSheet.create({
     footer: {
         fontSize: 25,
         fontWeight: "bold",
-    }
+    },
+    
 
 
 })
